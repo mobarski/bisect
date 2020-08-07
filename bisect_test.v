@@ -74,3 +74,57 @@ fn test_bisect_right_int_empty() {
 	assert bisect.right<int>(a,1) == 0
 	assert bisect.right<int>(a,2) == 0
 }
+
+// multiple
+
+fn test_22246() {
+	// index: 0  1 2 3 4
+	a := [int(2),2,2,4,6]
+
+	assert bisect.left<int>(a, 1)  == 0
+	assert bisect.right<int>(a, 1) == 0
+	assert bisect.first_available<int>(a, 1) == 0
+
+	assert bisect.left<int>(a, 2)  == 0 
+	assert bisect.right<int>(a, 2) == 3
+	assert bisect.first_available<int>(a, 2) in [0,1,2,3]
+
+	assert bisect.left<int>(a, 3)  == 3
+	assert bisect.right<int>(a, 3) == 3
+	assert bisect.first_available<int>(a, 3) == 3
+
+	assert bisect.left<int>(a, 4) == 3
+	assert bisect.right<int>(a, 4) == 4
+	assert bisect.first_available<int>(a, 4) in [3,4]
+
+	assert bisect.left<int>(a, 8)  == 5
+	assert bisect.right<int>(a, 8) == 5
+	assert bisect.first_available<int>(a, 8) == 5
+}
+
+fn test_bisect_left_insert() {
+	mut a := []int{}
+	for x in [4,5,1,9,7,8,3,2,6] {
+		i := bisect.left<int>(a, x)
+		a.insert(i, x)
+	}
+	assert a == [1,2,3,4,5,6,7,8,9]
+}
+
+fn test_bisect_right_insert() {
+	mut a := []int{}
+	for x in [4,5,1,9,7,8,3,2,6] {
+		i := bisect.right<int>(a, x)
+		a.insert(i, x)
+	}
+	assert a == [1,2,3,4,5,6,7,8,9]
+}
+
+fn test_bisect_first_insert() {
+	mut a := []int{}
+	for x in [4,5,1,9,7,8,3,2,6] {
+		i := bisect.first_available<int>(a, x)
+		a.insert(i, x)
+	}
+	assert a == [1,2,3,4,5,6,7,8,9]
+}

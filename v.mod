@@ -1,6 +1,6 @@
 Module {
 	name: 'bisect',
 	description: 'Array bisection algorithm',
-	version: '0.1',
+	version: '0.2',
 	dependencies: []
 }
