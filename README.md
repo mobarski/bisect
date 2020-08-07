@@ -10,9 +10,9 @@ v install mobarski.bisect
 
 All the following functions return the insertion index that maintains sorted order of the array.
 They differ in the way they handle identical values:
-- `bisect.left<T>(a []T, x T)` - return index to the left in case of equal value
-- `bisect.right<T>(a []T, x T)` - return index to the right in case of equal value
-- `bisect.first_available<T>(a []T, x T)` - return first available index (fastest)
+- `bisect.left<T>(a []T, x T) int` - return index to the left in case of equal value
+- `bisect.right<T>(a []T, x T) int` - return index to the right in case of equal value
+- `bisect.first_available<T>(a []T, x T) int` - return first available index (fastest)
 
 # Examples
 
